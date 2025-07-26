@@ -23,7 +23,8 @@
 				"esbenp.prettier-vscode",
 				"hiteshchoudharycode.chai-theme",
 				"PKief.material-icon-theme",
-				"GitHub.copilot"
+				"GitHub.copilot",
+				"EchoAPI.echoapi-for-vscode"
 			]
 
 			// Uncomment to set a specific version of VS Code to use in the dev container.
