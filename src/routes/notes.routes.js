@@ -41,4 +41,25 @@ router.get("/", async (req, res) => {
 	}
 });
 
+router.get('/:id' , async (req,res)=>{
+	try{
+		const notesID = req.params.id
+		
+		const notes = await  noteModel.findOne({_id : notesID})
+
+		res.status(201).json({
+			message : `notes found with ${notesID}`,
+			notes
+		})
+		
+	}
+	catch(error){
+		res.status(500).json({
+      		message: "Failed to create note",
+      		error: error.message,
+    	})
+	}
+	
+})
+
 module.exports = router;
