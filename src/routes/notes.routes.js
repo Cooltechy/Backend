@@ -12,7 +12,6 @@ router.post("/create", async (req, res) => {
       description,
     });
 
-
     res.status(201).json({
       message: "Notes Recevied  Successfully",
       notes,
@@ -23,6 +22,23 @@ router.post("/create", async (req, res) => {
       error: error.message,
     });
   }
+});
+
+router.get("/", async (req, res) => {
+	try{
+
+		const notes = await noteModel.find()
+		res.status(200).json({
+			message: "Notes fetched successfully",
+			notes,
+		});
+	}
+	catch(error){
+		res.status(500).json({
+      	message: "Failed to create note",
+      	error: error.message,
+    });
+	}
 });
 
 module.exports = router;
