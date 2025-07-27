@@ -47,6 +47,8 @@ router.get('/:id' , async (req,res)=>{
 		
 		const notes = await  noteModel.findOne({_id : notesID})
 
+		if(! notes)	return res.status(404).json({message : `No notes existed with ${notesID}`})
+
 		res.status(201).json({
 			message : `notes found with ${notesID}`,
 			notes
@@ -60,6 +62,28 @@ router.get('/:id' , async (req,res)=>{
     	})
 	}
 	
+})
+
+router.delete('/:id' , async (req , res)=>{
+	try{
+		
+		const notesID = req.params.id
+
+		await noteModel.findOneAndDelete({_id : notesID})
+
+		res.status(200).json({
+			message : `notes deleted with ${notesID}`
+		})
+
+	}
+	catch(error){
+		res.status(500).json({
+      		message: "Failed to create note",
+      		error: error.message,
+    	})
+	}
+
+
 })
 
 module.exports = router;
